@@ -1,38 +1,591 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;900&family=Rubik+Moonrocks&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+    --app-color: #eb2c4b;
+    --loading-color: #e95f76;
+    --secondary-color: #fff;
+    --primary-text: #222;
+    --primary-bg: #eee;
+    --text-color: #aaa;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+    text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.heading {
+    color: var(--app-color);
+    font-weight: 900;
+    font-size: 2rem;
+    text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+.subHeading {
+    color: var(--app-color);
+    font-style: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.heading1 {
+    color: var(--secondary-color);
+    font-weight: 900;
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+.subHeading1 {
+    color: var(--secondary-color);
+    font-style: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    padding-right: 1rem;
+    background: var(--secondary-color);
+    border-bottom: 1px solid #ddd;
+    z-index: 12;
+}
+
+.navLogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 340px;
+    max-width: 340px;
+    padding: 0 1rem;
+    height: 100%;
+    border-right: 1px solid #ddd;
+}
+
+.navLogo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.navProfile {
+    position: relative;
+}
+
+.navProfileInfo {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background: #eee;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    display: none;
+}
+
+.navProfile:hover .navProfileInfo {
+    display: initial;
+}
+
+.navProfileInfo .nuiEach {
+    padding: .6rem .8rem;
+    background: #fff;
+    font-size: .9rem;
+}
+
+.nuiEach:hover {
+    background: #f5f5f5;
+}
+
+.npiName {
+    font-weight: 600;
+}
+
+.npiEmail {
+    font-size: .8rem;
+}
+
+.navUser {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: .8rem;
+    color: var(--primary-text);
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.navUser img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.navUserInfo {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.nuiName {
+    font-weight: 600;
+}
+
+.nuiPer {
+    display: flex;
+    gap: .2rem;
+    align-items: center;
+}
+
+.navRight {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+.navNot,
+.navSer {
+    display: flex;
+    align-items: center;
+}
+
+.searchSide {
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    width: 280px;
+    height: calc(100vh - 60px);
+    background: var(--secondary-color);
+    font-size: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow-y: auto;
+    border-left: 1px solid #ddd;
+}
+
+.searchSide::-webkit-scrollbar {
+    width: 5px;
+}
+
+.searchSide::-webkit-scrollbar-thumb {
+    background: #ddd;
+}
+
+.searchSide form {
+    display: flex;
+    gap: .5rem;
+}
+
+.searchBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    min-width: 40px;
+    background: var(--app-color);
+    color: var(--secondary-color);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.skeletonData {
+    display: flex;
+    flex-direction: column;
+    gap: .72rem;
+}
+
+.skeletonCard {
+    padding: 10px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    cursor: pointer;
+}
+
+.skeletonCard:hover {
+    background: #f5f5f5;
+}
+
+.skeletonCard .circle {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: rgba(130, 130, 130, 0.2);
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
+    background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
+    background-size: 800px 100px;
+    animation: wave-circle 2s infinite ease-out;
+}
+
+.skeleton-left img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.skeleton-right div {
+    font-size: .9rem;
+}
+
+.skeletonCard .line {
+    height: 10px;
+    margin-bottom: 6px;
+    border-radius: 2px;
+    background: rgba(130, 130, 130, 0.2);
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, rgba(130, 130, 130, 0.2)), color-stop(18%, rgba(130, 130, 130, 0.3)), color-stop(33%, rgba(130, 130, 130, 0.2)));
+    background: linear-gradient(to right, rgba(130, 130, 130, 0.2) 8%, rgba(130, 130, 130, 0.3) 18%, rgba(130, 130, 130, 0.2) 33%);
+    background-size: 800px 100px;
+    animation: wave-lines 2s infinite ease-out;
+}
+
+.skeletonCard .skeleton-right {
+    width: 100%;
+}
+
+.skeletonCard .w75 {
+    width: 75% !important
+}
+
+.chatPortal {
+    position: fixed;
+    top: 60px;
+    left: 340px;
+    background: #fff;
+    width: calc(100% - 340px);
+    height: calc(100vh - 60px);
+}
+
+.selectedScreen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.messageArea {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.chatSpan{
+    padding: .4rem 1rem;
+    width: max-content;
+    max-width: 300px;
+    border-radius: 200px;
+    font-size: .86rem;
+}
+
+.sendArea {
+    width: 100%;
+    background: #eee;
+    padding: 0 1rem;
+    min-height: 60px;
+    max-height: 60px;
+    display: flex;
+    border-top: 1px solid #ddd;
+    position: relative;
+}
+
+.sendAreaTyping{
+    position: absolute;
+    top: -2rem;
+    left: 1rem;
+}
+
+.sendAreaTyping img{
+    width: 50px;
+}
+
+.sendArea form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.sendArea input {
+    padding: .6rem 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    outline: none;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.sendArea button {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 1.6rem;
+    color: var(--app-color);
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+
+@keyframes wave-lines {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+@keyframes wave-circle {
+    0% {
+        background-position: -468px 0;
+    }
+
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+.chatSidebar {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+    width: 340px;
+    height: calc(100vh - 60px);
+    background: var(--secondary-color);
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.chatSidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chatSidebar::-webkit-scrollbar-thumb {
+    background: #ddd;
+}
+
+.chatSideTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+}
+
+.cstHead {
+    font-weight: 600;
+}
+
+.groupBtn {
+    display: inline-flex;
+    align-items: center;
+    background: var(--app-color);
+    color: var(--secondary-color);
+    border: none;
+    outline: none;
+    padding: .5rem .8rem;
+    border-radius: 100px;
+    cursor: pointer;
+    gap: .5rem;
+}
+
+.chatSideChats {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.eachChatCard {
+    padding: .8rem 1rem;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.eachChatCard:hover {
+    background: #eee;
+}
+
+.eachChatCard img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.eachChatInfo {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.eachChatName {
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.eachChatMsg {
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.createGrpModalWrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #55545471;
+    z-index: 20;
+}
+
+.createGrpModal {
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    padding: 1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.createGrpModal .closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
+.cgmHeading {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.createGrpModal form {
+    width: 100%;
+}
+
+.createGrpModal input {
+    border: 1px solid #222;
+    padding: .48rem 1rem;
+    outline: none;
+    width: 100%;
+    border-radius: 200px;
+}
+
+.createGrpModal button {
+    width: 150px;
+    background: var(--app-color);
+    color: var(--secondary-color);
+    border: none;
+    outline: none;
+    padding: .48rem 1rem;
+    border-radius: 200px;
+    cursor: pointer;
+}
+
+.createGrpModal .selectedUserWrap {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.createGrpModal .searchedUserWrap {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: .32rem;
+}
+
+.selectedUserCard {
+    background: var(--loading-color);
+    display: flex;
+    align-items: center;
+    font-size: .7rem;
+    gap: .2rem;
+    border-radius: 200px;
+    padding: .24rem .6rem;
+}
+
+@media (max-width: 600px) {
+    .heading {
+        font-size: 1.76rem;
+    }
+
+    .subHeading {
+        font-size: 1.1rem;
+    }
+}
+
+.welcomeText {
+    display: flex;
+    color: var(--app-color);
+}
+
+.notSelectedScreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+}
+
+.notSelectedScreen img {
+    width: 260px;
+}
+
+.nssText {
+    color: var(--text-color);
+}
+
+.nssNote {
+    color: var(--app-color);
+    font-size: .8rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
 }
