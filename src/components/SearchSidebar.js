@@ -44,7 +44,7 @@ const SearchSidebar = () => {
                 }
             }
 
-            const { data } = await axios.post(`http://localhost:5000/api/chat`,{userId}, config)
+            const { data } = await axios.post(`https://gossip1-0-backend.onrender.com/api/chat`,{userId}, config)
             if(!chats.find((c) => c._id === data._id)) setChats([data, ...chats])
             setSelectedChat(data)
             setLoadingChat(false)

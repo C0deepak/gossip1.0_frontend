@@ -25,8 +25,8 @@ const Register = () => {
             const data = new FormData()
             data.append('file', pics)
             data.append('upload_preset', 'Gossip')
-            data.append('cloud_name', 'dsmfwjk5y')
-            fetch('https://api.cloudinary.com/v1_1/dsmfwjk5y/image/upload', {
+            data.append('cloud_name', 'cloud123deepak')
+            fetch('https://api.cloudinary.com/v1_1/cloud123deepak/image/upload', {
                 method: 'post',
                 body: data
             }).then((res) => res.json())
@@ -59,7 +59,7 @@ const Register = () => {
                     'content-type': 'application/json',
                 }
             }
-            const { data } = await axios.post('http://localhost:5000/api/user/register', { name, email, password, pic }, config)
+            const { data } = await axios.post('https://gossip1-0-backend.onrender.com/api/user/register', { name, email, password, pic }, config)
             toast.success('Registration successfull!')
             localStorage.setItem('userInfo', JSON.stringify(data))
             setLoading(false)

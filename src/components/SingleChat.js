@@ -29,7 +29,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 }
             }
             setLoading(true)
-            const { data } = await axios.get(`http://localhost:5000/api/message/${selectedChat._id}`, config)
+            const { data } = await axios.get(`https://gossip1-0-backend.onrender.com/api/message/${selectedChat._id}`, config)
             setMessages(data)
             setLoading(false)
 
@@ -78,7 +78,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         Authorization: `Bearer ${user.token}`
                     }
                 }
-                const { data } = await axios.post(`http://localhost:5000/api/message`, {
+                const { data } = await axios.post(`https://gossip1-0-backend.onrender.com/api/message`, {
                     content: newMessage,
                     receiver: selectedChat._id
                 }, config)

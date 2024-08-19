@@ -28,7 +28,7 @@ const Login = () => {
                     'content-type': 'application/json',
                 }
             }
-            const { data } = await axios.post('http://localhost:5000/api/user/login', { email, password }, config)
+            const { data } = await axios.post('https://gossip1-0-backend.onrender.com/api/user/login', { email, password }, config)
             toast.success('Login successfull!')
             localStorage.setItem('userInfo', JSON.stringify(data))
             setUser(data)
