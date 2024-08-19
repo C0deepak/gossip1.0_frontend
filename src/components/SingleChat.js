@@ -7,7 +7,7 @@ import { HiPaperAirplane } from 'react-icons/hi'
 import { isLastMessage, isSameSender, isSameSenderMargin } from '../config/ChatLogic'
 import io from 'socket.io-client'
 
-const ENDPOINT = 'http://localhost:5000'
+const ENDPOINT = 'https://gossip-frontend-sigma.vercel.app'
 var socket, selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
